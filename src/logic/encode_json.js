@@ -17,12 +17,12 @@ function recursive(target, refs, path) {
     let a = target[prop];
     if (a instanceof Array || a instanceof Object) {
       let found = refs.find((ref) => ref.target === a);
-      let newPath = a instanceof Array ? `${path}[${prop}]` : `${path}.${prop}`;
       if (found) {
         // If found a reference to this object already
         ret[prop] = {'$ref': found.path};
       } else {
         // Otherwise run recursively
+        let newPath = target instanceof Array ? `${path}[${prop}]` : `${path}.${prop}`;
         ret[prop] = recursive(target[prop], refs, newPath);
       }
     } else {

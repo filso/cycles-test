@@ -21,16 +21,16 @@ describe('encode_json' , () => {
   it('encodes advanced example', () => {
     const myObj = { a: 1, b: 4 };
     myObj.c = myObj;
-    myObj.d = { e: { f: myObj }};
-    myObj.g = [1, 2, 3, 4, myObj.d.e];
+    myObj.d = [5, 6, { e: { f: myObj }}];
+    myObj.g = [1, 2, 3, 4, myObj.d[2]];
     myObj.h = myObj.d;
 
     let expectedResult = {
       a: 1,
       b: 4,
       c: { '$ref': '$' },
-      d: { e: { f: {"$ref": "$"} } },
-      g: [ 1, 2, 3, 4, { '$ref': '$.d.e' } ],
+      d: [5, 6, { e: { f: {"$ref": "$"} } }],
+      g: [ 1, 2, 3, 4, { '$ref': '$.d[2]' } ],
       h: {
         "$ref": "$.d"
       }
