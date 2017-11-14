@@ -6,16 +6,16 @@ describe('encode_json' , () => {
   it('encodes basic example', () => {
     const myArray = [1, 'a'];
     myArray[2] = myArray;
-    let encoded = JSON.encodeCycles(myArray);
+    let encoded = JSON.encCycles(myArray);
     expect(encoded).to.deep.equal([ 1, 'a', { '$ref': '$' } ]);
   });
 
   it('encodes primitives', () => {
-    expect(JSON.encodeCycles(42)).to.equal(42);
-    expect(JSON.encodeCycles(null)).to.equal(null);
-    expect(JSON.encodeCycles('str')).to.equal('str');
-    expect(JSON.encodeCycles(false)).to.equal(false);
-    expect(JSON.encodeCycles(true)).to.equal(true);
+    expect(JSON.encCycles(42)).to.equal(42);
+    expect(JSON.encCycles(null)).to.equal(null);
+    expect(JSON.encCycles('str')).to.equal('str');
+    expect(JSON.encCycles(false)).to.equal(false);
+    expect(JSON.encCycles(true)).to.equal(true);
   });
 
   it('encodes advanced example', () => {
@@ -36,6 +36,6 @@ describe('encode_json' , () => {
       }
     };
 
-    expect(JSON.encodeCycles(myObj)).to.deep.equal(expectedResult);
+    expect(JSON.encCycles(myObj)).to.deep.equal(expectedResult);
   })
 });

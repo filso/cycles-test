@@ -32,7 +32,7 @@ function recursive(target, refs, path) {
   return ret;
 }
 
-JSON.encodeCycles = (target) => {
+JSON.encCycles = (target) => {
   let refs = [];
   return recursive(target, refs, '$');
 };
